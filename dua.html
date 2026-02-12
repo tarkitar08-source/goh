@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Kelas</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #e8912d 25%, #f2a144c2 25%, #f2a144c2 75%, #e8912d 75%);
+            color: rgb(241, 230, 230); /* Text color */
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center; /* Center all text */
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            text-align: center;
+            animation: bounceIn 1.5s ease-out;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        h3 {
+            animation: slideInLeft 1s ease-out 0.5s both;
+        }
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .button-name {
+  align-items: center;
+  appearance: none;
+  background-color: #fcfcfd;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow:
+    rgba(45, 35, 66, 0.2) 0 2px 4px,
+    rgba(45, 35, 66, 0.15) 0 7px 13px -3px,
+    #d6d6e7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #36395a;
+  cursor: pointer;
+  display: inline-flex;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition:
+    box-shadow 0.15s,
+    transform 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  font-size: 18px;
+}
+
+.button-name:focus {
+  box-shadow:
+    #d6d6e7 0 0 0 1.5px inset,
+    rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+    #d6d6e7 0 -3px 0 inset;
+}
+
+.button-name:hover {
+  box-shadow:
+    rgba(45, 35, 66, 0.3) 0 4px 8px,
+    rgba(45, 35, 66, 0.2) 0 7px 13px -3px,
+    #d6d6e7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-name:active {
+  box-shadow: #d6d6e7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
+        .container {
+            background-color: #ae3232e4; /* Dark red background */
+            padding: 10px;
+            border-radius: 50px;
+            animation: slideInUp 1s ease-out;
+        }
+        @keyframes slideInUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .container2 {
+            background: #ae3232e4; /* Police stripes */
+            padding: 60px;
+            border-radius: 50px;
+            margin-top: 20px;
+            animation: zoomIn 1.2s ease-out 0.3s both;
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        img {
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        img:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .text {
+            font-size: clamp(20px,4vw, 48px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>STRUKTUR KELAS</h1>
+        <h3>7C Di MTSN 1 kota kediri</h3>
+        <button class="button-name" onclick="window.location.href = 'ayo.html';">Kembali ke Halaman Utama</button>
+       
+    </div>
+    <div class="container2">
+        <h2>Struktur - Kelas</h2>
+        <img src="images/gambar4.jpeg" alt="Gambar 2" width="400" height="600" style="border: 6px solid rgb(60, 59, 59);" >
+       
+    </div>
+    
+    <script>
+        window.onload = function() {
+            if (!localStorage.getItem('loggedIn')) {
+                window.location.href = 'login.html';
+            }
+            // Add interactivity to images
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('click', function() {
+                    this.style.transform = this.style.transform.includes('scale(1.2)') ? 'scale(1) rotate(5deg)' : 'scale(1.2) rotate(10deg)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1) rotate(0deg)';
+                    }, 500);
+                });
+            });
+            // Add click effect to buttons
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.innerHTML = 'Loading...';
+                    setTimeout(() => {
+                        this.innerHTML = this.textContent;
+                    }, 1000);
+                });
+            });
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroom Mystery: The Case of Room 101</title>
+    <style>
+        :root {
+            --dark-wood: #3e2723;
+            --paper: #f4e4bc;
+            --accent: #d32f2f;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
+            background-color: #1a1a1a;
+        }
+
+        /* --- Layar 1: Meja Detektif --- */
+        #desk-scene {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: radial-gradient(circle, #4e342e 0%, #211107 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 1s ease-in-out, opacity 0.8s;
+        }
+
+        .item {
+            position: absolute;
+            cursor: pointer;
+            filter: drop-shadow(5px 10px 15px rgba(0,0,0,0.7));
+            transition: transform 0.3s;
+        }
+
+        .item:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        /* Buku Utama */
+        #case-file {
+            width: 300px;
+            z-index: 10;
+        }
+
+        /* Hiasan Barang Detektif */
+        .magnifier { width: 150px; top: 20%; left: 15%; transform: rotate(-15deg); }
+        .pen { width: 120px; bottom: 25%; right: 20%; transform: rotate(45deg); }
+        .coffee-stain { width: 200px; top: 10%; right: 10%; opacity: 0.3; pointer-events: none; }
+
+        /* --- Layar 2: Konten Kelas --- */
+        #main-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: url('https://www.transparenttextures.com/patterns/dark-leather.png'), #2c2c2c;
+            display: none; /* Sembunyi di awal */
+            padding: 40px;
+            box-sizing: border-box;
+            color: var(--paper);
+            overflow-y: auto;
+        }
+
+        .folder-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--paper);
+            color: #333;
+            padding: 40px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            border-radius: 5px;
+            min-height: 80vh;
+        }
+
+        h1 { border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
+        
+        .fade-out {
+            transform: scale(1.5);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .show-content {
+            display: block !important;
+            animation: fadeIn 1.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        button {
+  position: relative;
+  font-size: 1.2em;
+  padding: 0.7em 1.4em;
+  background-color: #BF0426;
+  text-decoration: none;
+  border: none;
+  border-radius: 0.5em;
+  color: #DEDEDE;
+  box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.3);
+}
+
+button::before {
+  position: absolute;
+  content: '';
+  height: 0;
+  width: 0;
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg, #f4e4bc 0%, #f4e4bc 50%, rgba(150,4,31,1) 50%, rgba(191,4,38,1) 60%);
+  border-radius: 0 0 0.5em 0;
+  box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
+}
+
+button:hover::before {
+  width: 1.6em;
+  height: 1.6em;
+}
+
+button:active {
+  box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 0, 0.3);
+  transform: translate(0.1em, 0.1em);
+}
+.grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .text {
+            font-size: clamp(20px,4vw, 48px);
+        }
+    </style>
+</head>
+<body>
+
+    <section id="desk-scene">
+        <img src="https://cdn-icons-png.flaticon.com/512/2232/2232688.png" alt="Magnifier" class="item magnifier">
+        <img src="https://cdn-icons-png.flaticon.com/512/597/597059.png" alt="Pen" class="item pen">
+       
+        
+        <div id="case-file" class="item" onclick="openCase()">
+            <img src="https://cdn-icons-png.flaticon.com/512/2345/2345419.png" alt="Case File Book" style="width: 100%;">
+            <p style="text-align: center; color: white; font-weight: bold; margin-top: 10px;">KLIK UNTUK MEMBUKA KASUS</p>
+        </div>
+
+        <div style="position: absolute; bottom: 20px; color: rgba(255,255,255,0.5);">
+            <h1>NEW ERA</h1>
+            Ssst! Klik pada buku catatan untuk masuk ke markas...
+        </div>
+    </section>
+
+    <section id="main-content">
+        <div class="folder-container">
+            <h1>📂 CAPVATE:ANGKATAN 28</h1>
+            <p><strong>Status:</strong> Aktif / Rahasia</p>
+            <hr>
+            
+            <h3>Target Utama (DEAT OR LIVE):</h3>
+            <img src="images/gambar4.jpeg" alt="Target Icon" style="width: 500px; vertical-align: middle;">
+
+            <h3>Lore:</h3>
+            <h4><p>Mereka bersatu menjadi satu tim yang bernama "CAPVATE".</p></h4>
+            <h4><p>CAPVATE memiliki orang-orang yang bukan hanya mengguncang negara 
+              mereka dapat mengguncang dunia.</p></h4>
+            <button class="btn-back" onclick="closeCase()">Kembali ke Meja</button>
+            <button class="btn-back" onclick="window.location.href = 'daftar.html';">Halaman selanjutnya</button>
+        </div>
+    </section>
+
+    <script>
+        function openCase() {
+            // Efek transisi keluar
+            document.getElementById('desk-scene').classList.add('fade-out');
+            
+            // Tampilkan layar kedua setelah animasi selesai
+            setTimeout(() => {
+                document.getElementById('desk-scene').style.display = 'none';
+                document.getElementById('main-content').classList.add('show-content');
+            }, 800);
+        }
+
+        function closeCase() {
+            // Balikkan keadaan
+            document.getElementById('main-content').classList.remove('show-content');
+            document.getElementById('desk-scene').style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('desk-scene').classList.remove('fade-out');
+            }, 10);
+        }
+    </script>
+</body>
+</html>
